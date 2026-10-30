@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outreach Rangers · guest post marketplace</title>
+  <style>
+    /* ---------- RESET & GLOBAL ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(145deg, #f9f7fe 0%, #f0f3fd 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      color: #1c1e2b;
+    }
+
+    /* main card – colourful border + soft shadow */
+    .article-card {
+      max-width: 860px;
+      width: 100%;
+      background: #fffffffa;
+      backdrop-filter: blur(2px);
+      border-radius: 42px;
+      padding: 2.5rem 2.2rem;
+      box-shadow: 0 30px 45px -20px rgba(79, 70, 229, 0.25),
+                  0 0 0 2px #ffffff,
+                  0 0 0 5px #e0e7ff;
+      transition: all 0.2s ease;
+    }
+
+    /* playful gradient accent on the left */
+    .article-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 100%;
+      background: linear-gradient(180deg, #8b5cf6, #ec4899, #f97316, #8b5cf6);
+      border-radius: 42px 0 0 42px;
+      opacity: 0.9;
+    }
+
+    .article-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ---------- TYPOGRAPHY & COLORS ---------- */
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #1e1b4b, #4338ca, #7c3aed);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+      border-bottom: 4px solid #c4b5fd;
+      padding-bottom: 0.25rem;
+    }
+
+    .subhead {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #5b5e77;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .subhead span {
+      background: #e0e7ff;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #3730a3;
+      letter-spacing: 0.3px;
+    }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: #2a2c3e;
+      margin-bottom: 1.4rem;
+      font-weight: 400;
+    }
+
+    /* anchor text – custom highlight + hover */
+    a {
+      color: #6d28d9;
+      font-weight: 700;
+      text-decoration: none;
+      background: linear-gradient(120deg, #ede9fe 0%, #ede9fe 40%, #fae8ff 80%);
+      background-repeat: no-repeat;
+      background-size: 100% 0.4em;
+      background-position: 0 85%;
+      padding: 0 0.1rem;
+      transition: all 0.2s ease;
+      border-radius: 4px;
+    }
+
+    a:hover {
+      background-size: 100% 0.7em;
+      background-position: 0 88%;
+      color: #4c1d95;
+      text-decoration: underline wavy #c084fc 1.5px;
+      text-underline-offset: 5px;
+    }
+
+    /* strong / highlight */
+    .highlight {
+      background: #fef9c3;
+      padding: 0.1rem 0.3rem;
+      border-radius: 8px;
+      font-weight: 600;
+      color: #4b3b00;
+      box-shadow: 0 2px 0 #fde047;
+    }
+
+    /* metric chips */
+    .metric-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1.5rem 0 1.2rem;
+    }
+
+    .chip {
+      background: #f3f4f6;
+      border-radius: 100px;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1f2937;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.02), inset 0 0 0 1px #ffffff;
+      border: 1px solid #e5e7eb;
+    }
+
+    .chip .emoji {
+      font-size: 1.1rem;
+    }
+
+    .chip.green {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #166534;
+    }
+
+    .chip.purple {
+      background: #ede9fe;
+      border-color: #c4b5fd;
+      color: #4c1d95;
+    }
+
+    .chip.orange {
+      background: #ffedd5;
+      border-color: #fed7aa;
+      color: #9a3412;
+    }
+
+    /* divider */
+    .divider {
+      height: 2px;
+      background: linear-gradient(90deg, #e0e7ff, #fae8ff, #fed7aa, #e0e7ff);
+      border-radius: 2px;
+      margin: 1.8rem 0 1.6rem;
+    }
+
+    /* smaller note / extra details */
+    .footnote {
+      font-size: 0.9rem;
+      color: #4b5563;
+      background: #f9fafb;
+      padding: 1rem 1.2rem;
+      border-radius: 20px;
+      border-left: 6px solid #8b5cf6;
+      margin-top: 1.2rem;
+      font-weight: 400;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 1rem;
+    }
+
+    .footnote .badge {
+      background: #ffffff;
+      border-radius: 40px;
+      padding: 0.25rem 0.8rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #6d28d9;
+      border: 1px solid #c4b5fd;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      .article-card {
+        padding: 1.8rem 1.2rem;
+        border-radius: 32px;
+      }
+      .article-card::before {
+        width: 6px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .chip {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="article-card">
+    <h1>Outreach Rangers: The Guest Post Marketplace That Works</h1>
+    <div class="subhead">
+      <span>escrow · verified metrics · real‑time tracking</span>
+    </div>
+
+    <p>
+      If you’ve ever bought a guest post, you know the drill: dozens of spreadsheets, awkward DMs, and the constant fear of a link that never goes live. 
+      <strong>Outreach Rangers</strong> strips away all that friction with a clean, escrow‑backed marketplace built for SEOs, agencies, and publishers. 
+      It’s not just another link vendor — it’s the <a href="https://www.outreachrangers.com/" target="_blank" rel="noopener">best guest post market place</a> we’ve tested this year, and here’s why.
+    </p>
+
+    <div class="metric-chips">
+      <div class="chip purple"><span class="emoji">🔒</span> Escrow until you approve</div>
+      <div class="chip green"><span class="emoji">📊</span> Moz · Ahrefs · Semrush</div>
+      <div class="chip orange"><span class="emoji">⚡</span> No buyer fees</div>
+    </div>
+
+    <p>
+      Every listing on Outreach Rangers shows the full picture before you spend a dime: <span class="highlight">DA, DR, traffic, spam score, turnaround time, and link type</span>. 
+      You filter by niche, price, and delivery speed, then place an order — but your money sits safely in escrow until the live link is approved. 
+      No more ghost publishers. If they don’t deliver, you’re refunded to your wallet automatically.
+    </p>
+
+    <div class="divider"></div>
+
+    <p>
+      What sets it apart is the workflow. Order tracking moves through four transparent stages: <strong>placed, accepted, delivered, completed</strong>. 
+      You get notified at each step, can message the site owner directly inside the platform, and request revisions before the publisher gets paid. 
+      The dashboard even shows sample listings with real metrics — like a health blog with DR 79 and 56k traffic, or a news site with DA 82. 
+      That’s the kind of data you normally have to dig for.
+    </p>
+
+    <p>
+      For publishers, it’s equally straightforward: list your site for free, set your price and turnaround, and pay a flat 3% fee only on withdrawal. 
+      No hidden costs, no subscription. And for buyers, the listing price is final — no surprise add‑ons (content writing is available as an optional extra from +$20).
+    </p>
+
+    <div class="footnote">
+      <span class="badge">✔️ manual review</span>
+      <span>Every listing manually vetted · Support replies in ~2 hours · Resolution center for disputes</span>
+    </div>
+
+    <p style="margin-top: 1.4rem;">
+      Whether you’re building a niche edit or a full‑scale link campaign, Outreach Rangers keeps you in control. 
+      Try it once — you’ll see why it’s the <a href="https://www.outreachrangers.com/" target="_blank" rel="noopener"><strong>best guest post market place</strong></a> for anyone who values transparency and speed. 
+      Sign up free, browse the marketplace, and approve links only when you’re happy.
+    </p>
+  </div>
+</body>
+</html>
